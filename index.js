@@ -4,7 +4,7 @@ import sincronizarTabelas from './Model/index.js';
 import route from './router.js';
 
 
-sincronizarTabelas();
+// sincronizarTabelas();
 
 server.set('views', './View');
 server.set('view engine', 'ejs');

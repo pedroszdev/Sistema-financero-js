@@ -1,7 +1,7 @@
 import sequelize from './db.js';
 import User from './UserModel.js';
 import Transacao from './TransacaoModel.js';
-
+import Categoria from './CategoriaModel.js';
 
 export default async function sincronizarTabelas() {
     try {
@@ -18,7 +18,7 @@ export default async function sincronizarTabelas() {
         });
 
         // O comando sequelize.sync() cria as tabelas que não existem no banco
-        await sequelize.sync(); 
+        await sequelize.sync({alter: true}); 
         
         console.log('Tabela User criada/sincronizada com sucesso no Postgres!');
     } catch (error) {

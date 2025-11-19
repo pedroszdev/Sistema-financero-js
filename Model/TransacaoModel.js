@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize';
 import sequelize from './db.js';
+import Categoria from './CategoriaModel.js';
 const Transacao = sequelize.define('Transacao', {
     id:{
         type:DataTypes.INTEGER,
@@ -18,6 +19,14 @@ const Transacao = sequelize.define('Transacao', {
     valor:{
         type:DataTypes.DOUBLE,
         allowNull: false
+    },
+    categoria:{
+        type:DataTypes.STRING,
+        allowNull:true,
+    },
+    data:{
+        type:DataTypes.DATE,
+        allowNull: false,
     }
 });
 

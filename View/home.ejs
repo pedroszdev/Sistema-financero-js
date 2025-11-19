@@ -36,12 +36,12 @@
         <div class="card verde">
           <img src="image/subirBranco.png" alt="" />
           <p>Receitas</p>
-          <h3>R$ <%= context.receita %></h3>
+          <h3>R$ <%= context.receitaMesAtual %></h3>
         </div>
         <div class="card vermelho">
           <img src="image/descer.png" alt="" />
           <p>Despesas</p>
-          <h3>R$ <%= context.despesa %></h3>
+          <h3>R$ <%= context.despesaMesAtual %></h3>
         </div>
       </div>
       <div class="acesso-rapido">
@@ -97,10 +97,7 @@
 
     <script>
       // Armazena os dados do Back-end em variáveis globais ou em um objeto
-      const dadosGrafico = {
-        receita: "<%= context.receita %>",
-        despesa: "<%= context.despesa %>",
-      };
+      const {dados6meses} = JSON.parse('<%- JSON.stringify(context) %>');
     </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script src="/js/graficoLinha.js"></script>
