@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/home.css">
+    <title>Home | FinanceApp</title>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="image/financaBranco.png" alt="">
+            <h1>FinanceApp</h1>
+        </div>
+        <div class="links">
+            <a href="home.html"><img src="image/painel-de-controle.png" alt="">Dashboard</a>
+            <a href="transacoes.html"><img src="image/troca.png" alt="">Transações</a>
+        </div>
+        <div class="user">
+            <a href="user.html"><img src="image/user.png" alt="">Pedro Manoel</a>
+        </div>
+    </nav>
+    <main>
+        <h2>Dashboard</h2>
+        <p>Bem-vindo de volta! Aqui está um resumo das suas finanças.</p>
+        <div class="cards">
+            <div class="card azul">
+                <img src="image/carteira.png" alt="">
+                <p>Saldo Total</p>
+                <h3>R$ <%= context.saldo %></h3>
+            </div>
+            <div class="card verde">
+                <img src="image/subirBranco.png" alt="">
+                <p>Receitas</p>
+                <h3>R$ <%= context.receita %></h3>
+            </div>
+            <div class="card vermelho">
+                <img src="image/descer.png" alt="">
+                <p>Despesas</p>
+                <h3>R$ <%= context.despesa %></h3>
+            </div>
+        </div>
+        <div class="acesso-rapido">
+            <a href="" class="card-acesso azul">
+                <img src="image/mais.png" alt="">
+                <div>
+                    <h3>Nova Transação</h3>
+                    <p>Acesso Rápido</p>
+                </div>
+            </a>
+        </div>
+    </main>
+</body>
+</html>

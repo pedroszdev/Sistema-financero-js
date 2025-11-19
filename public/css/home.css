@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}/* COR DO ICON MENU #7F7F7F */
+body{
+    background-color: aliceblue;
+    font-family: "Inter", sans-serif;
+    color: #525252;
+}
+.inter {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 1px 1px 1rem rgba(196, 194, 194, 0.562);
+    background-color: rgba(255, 255, 255, 0.397);
+}
+.logo{
+    display: flex;
+    align-items: center;
+    padding: 0.8rem;
+    padding-left: 2.5rem;
+
+}
+.logo img{
+    background: linear-gradient(to right, #2d17ba, #1e0f95);
+    padding: 0.7rem;
+    border-radius: 1rem;
+    width: 35px;
+}
+.logo h1{
+    font-size: 1.5rem;
+    background: linear-gradient(to right, #402db8, #2f228f);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;   
+    padding-left: 0.6rem;
+}
+.links{
+    display: flex;
+    gap: 1rem;
+}
+.links a{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #525252;
+    padding: 0.8rem;
+}
+.links a:hover{
+    background-color: #ececec;
+    border-radius: 0.5rem ;
+    color: #3564e6;
+}
+
+.user{
+    display: flex;
+    gap: 1rem;
+    padding-right: 2.5rem;
+}
+.user img{
+    background: linear-gradient(to right, #402db8, #2f228f);
+    padding: 0.8rem;
+    border-radius: 1.8rem;
+}
+.user a{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #666;
+    padding: 0.5rem;
+}
+.user a:hover{
+    background-color: #ececec;
+    border-radius: 0.5rem ;
+    color: #3564e6;
+}
+main{
+    padding: 2.5rem;
+}
+.cards{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 2rem;
+    padding: 3rem 0;
+    
+}
+.card{
+    flex: 1;
+    padding: 2rem;
+    background-color: #aa9fff;
+    border-radius: 1rem;
+}
+.card img{
+    background-color: #1e0f95;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+.card p{
+    padding: 0.7rem 0;
+    color: #414141;
+}
+.card h3{
+    color: black;
+    font-size: 2rem;
+    font-weight: 500;
+}
+.azul{
+    background-color: #8ba8f856;
+}
+.azul img{
+    background-color: #1950e7;
+}
+.verde{
+    background-color: #9bee9f56;
+}
+.verde img{
+    background-color: #18ca35;
+}
+.vermelho{
+    background-color: #ee9b9b56;
+}
+.vermelho img{
+    background-color: #ca1818;
+}
+.acesso-rapido{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 2rem;
+    padding: 3rem 0;
+    padding-top: 0;
+}
+.card-acesso{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.397);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid #dfdfdf;
+    text-decoration: none;
+    color: #525252;
+
+}
+.card-acesso img{
+    padding: 0.5rem;
+    border-radius: 0.8rem;
+}
+.card-acesso div{
+    padding: 0 1rem;
+}
+.card-acesso div h3{
+    font-weight: 600;
+}
+.card-acesso div p{
+    font-size: 0.9rem;
+}
+.roxo img{
+    background-color: #932be7;
+}
