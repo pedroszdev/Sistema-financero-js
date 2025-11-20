@@ -27,9 +27,8 @@ if (typeof Chart === "undefined") {
     const receitas6meses = [];
     for (let mes in dados6meses) {
       labels.push(mes);
-      console.log(dados6meses[mes])
-      despesas6meses.push(dados6meses[mes].despesa);
-      receitas6meses.push(dados6meses[mes].receita);
+      despesas6meses.push(dados6meses[mes].despesa.toFixed(2));
+      receitas6meses.push(dados6meses[mes].receita.toFixed(2));
     }
     new Chart(ctx, {
       type: "line",
@@ -64,12 +63,11 @@ if (typeof Chart === "undefined") {
         scales: {
             y: { // Configurando o Eixo Y
                 beginAtZero: true, // Garante que o eixo comece no 0 (opcional)
-                max: 5000,         // Define o valor máximo do eixo (Ex: 1500)
                 grid: { borderDash: [4, 4], drawBorder: false },
                 beginAtZero: true,
                 ticks: {
                     // Define o intervalo entre as marcas
-                    stepSize: 1000, 
+                    stepSize: 1500, 
                     // Você também pode formatar os rótulos aqui (para adicionar R$)
                     callback: function(value, index, ticks) {
                         // Formata a label: transforma 1000 em R$ 1.000

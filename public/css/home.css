@@ -350,7 +350,7 @@ main{
 /* Área do Gráfico */
 .chart-container-linha {
     position: relative;
-    height: 300px; /* Altura fixa para o gráfico */
+    height: 600px; /* Altura fixa para o gráfico */
     width: 100%;
     margin-bottom: 10px; /* Espaçamento entre o gráfico e a legenda */
 }
