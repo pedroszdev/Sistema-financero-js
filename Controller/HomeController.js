@@ -4,7 +4,9 @@ export default async function home(req,res) {
     const transacoes = await Transacao.findAll({
         where: {
             userId: 1 
-        }
+        },
+        raw: true,  
+        nest: true,
     });
 
     let despesaMesAtual = 0;
@@ -15,17 +17,17 @@ export default async function home(req,res) {
     const dadosCategoria = {};
 
     for (let i = 0; i<transacoes.length;i++){
-        let dataTransação = new Date(transacoes[i].dataValues.data);
+        let dataTransação = new Date(transacoes[i].data);
 
 
         if (dataTransação.getMonth() === mesAtual){
             //CALCULAR RECEITAS E DESPESAS DO MES ATUAL
-            if (transacoes[i].dataValues.tipo === 'despesa'){
-                despesaMesAtual += transacoes[i].dataValues.valor;
+            if (transacoes[i].tipo === 'despesa'){
+                despesaMesAtual += transacoes[i].valor;
                 
 
-                const categoria = transacoes[i].dataValues.categoria;
-                const valor = transacoes[i].dataValues.valor;
+                const categoria = transacoes[i].categoria;
+                const valor = transacoes[i].valor;
                 // Se a categoria já existe no objeto, adiciona o valor.
                 if (dadosCategoria[categoria]) {
                     dadosCategoria[categoria] += valor;
@@ -35,8 +37,8 @@ export default async function home(req,res) {
                 }
 
 
-            }else if (transacoes[i].dataValues.tipo === 'Receita'){
-                receitaMesAtual += transacoes[i].dataValues.valor;
+            }else if (transacoes[i].tipo === 'Receita'){
+                receitaMesAtual += transacoes[i].valor;
             }
 
 
@@ -46,10 +48,10 @@ export default async function home(req,res) {
         }
 
         //CALCULAR SALDO
-        if (transacoes[i].dataValues.tipo === 'despesa'){
-            despesaTotal += transacoes[i].dataValues.valor;
-        }else if (transacoes[i].dataValues.tipo === 'Receita'){
-            receitaTotal += transacoes[i].dataValues.valor;
+        if (transacoes[i].tipo === 'despesa'){
+            despesaTotal += transacoes[i].valor;
+        }else if (transacoes[i].tipo === 'Receita'){
+            receitaTotal += transacoes[i].valor;
         }
 
             
@@ -74,13 +76,13 @@ export default async function home(req,res) {
     //PEGA AS INFOS DE RECEITA E DESPESA DOS ULTIMOS 6 MESES
     for (let mes of ultimos6Meses){
         for (let i = 0; i<transacoes.length;i++){
-            let dataTransação = new Date(transacoes[i].dataValues.data);
+            let dataTransação = new Date(transacoes[i].data);
             if (mes === dataTransação.getMonth()){
-                if (transacoes[i].dataValues.tipo === 'despesa'){
-                    despesa += transacoes[i].dataValues.valor
+                if (transacoes[i].tipo === 'despesa'){
+                    despesa += transacoes[i].valor
                 }
-                if (transacoes[i].dataValues.tipo === 'Receita'){
-                    receita += transacoes[i].dataValues.valor
+                if (transacoes[i].tipo === 'Receita'){
+                    receita += transacoes[i].valor
                 }
             }
         }
