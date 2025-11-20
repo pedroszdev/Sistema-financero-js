@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/transacoes.css" />
+    <title>Transações | FinanceApp</title>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <img src="image/financaBranco.png" alt="" />
+        <h1>FinanceApp</h1>
+      </div>
+      <div class="links">
+        <a href="/"
+          ><img src="image/painel-de-controle.png" alt="" />Dashboard</a
+        >
+        <a href="/transacoes"
+          ><img src="image/troca.png" alt="" />Transações</a
+        >
+      </div>
+      <div class="user">
+        <a href="user.html"><img src="image/user.png" alt="" />Pedro Manoel</a>
+      </div>
+    </nav>
+
+    <main>
+      <h2>Transações</h2>
+      <p>Gerencie todas as suas movimentações financeiras.</p>
+      
+      <div class="pesquisa">
+        <input
+          type="search"
+          name="search"
+          id="search"
+          placeholder="Buscar Transações..."
+        />
+        <button>Pesquisar</button>
+        <div>
+          <select id="categoria">
+            <option value="todas">Todas</option>
+            <option value="trabalho">Trabalho</option>
+            <option value="mercado">Mercado</option>
+            <option value="financeiro">Financeiro</option>
+          </select>
+          <select id="tipo">
+            <option value="todas">Todas</option>
+            <option value="receita">Receita</option>
+            <option value="despesa">Despesa</option>
+          </select>
+          
+          <a href="novaTransacao.html"><img src="image/maisPreto.png" alt="" />Nova Transação</a>
+        </div>
+      </div>
+
+      <div class="tabela">
+        <h2>Lista de Transações</h2>
+        <% if (transacoes.length > 0) { %>
+          <table>
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Descrição</th>
+                <th>Categoria</th>
+                <th>Tipo</th>
+                <th>Valor</th>
+                <th>Edição</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for (let i=0;i<transacoes.length;i++) {%>
+                <tr>
+                  <td><%= transacoes[i].data.toLocaleDateString('pt-BR') %></td>
+                  <td><%= transacoes[i].descricao %></td>
+                  <td><%= transacoes[i].categoria %></td>
+                  <% if (transacoes[i].tipo === 'despesa') {%>
+                    <td><span class="badge despesa">Despesa</span></td>
+                  <% } else {%>
+                    <td><span class="badge receita">Receita</span></td>
+                  <% } %>
+                  <td>R$ <%= transacoes[i].valor.toFixed(2) %></td>
+                  <td>
+                    <a href="" class="botao-editar"
+                      ><img src="image/editar.png" alt="" />Editar</a
+                    >
+                  </td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        <% } else {%>
+          <p style="text-align: center; font-size: 2rem;">Nenhuma transação encontrada.</p>
+        <% } %>
+      </div>
+    </main>
+  </body>
+</html>
