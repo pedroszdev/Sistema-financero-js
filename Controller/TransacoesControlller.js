@@ -3,7 +3,9 @@ import Categoria from "../Model/CategoriaModel.js";
 import { Op } from "sequelize";
 
 export default async function home(req,res) {
-    const { search, categoriaPesquisada, tipoPesquisada } = req.query;
+    const { search} = req.query;
+    const tipoPesquisada = req.query.tipo;
+    const categoriaPesquisada = req.query.categoria;
 
     let condicao = { userId: 1 };
 
@@ -18,7 +20,6 @@ export default async function home(req,res) {
     if (tipoPesquisada && tipoPesquisada !== 'todas') {
         condicao.tipo = tipoPesquisada;
     }
-
     const transacoes = await Transacao.findAll({
         where: condicao, 
         order: [['data', 'DESC']],
