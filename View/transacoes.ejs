@@ -29,7 +29,7 @@
       <h2>Transações</h2>
       <p>Gerencie todas as suas movimentações financeiras.</p>
       
-      <div class="pesquisa">
+      <form method="GET" action="/transacoes" class="pesquisa">
         <input
           type="search"
           name="search"
@@ -38,21 +38,23 @@
         />
         <button>Pesquisar</button>
         <div>
-          <select id="categoria">
+          
+          <select id="categoria" name="categoria">
             <option value="todas">Todas</option>
-            <option value="trabalho">Trabalho</option>
-            <option value="mercado">Mercado</option>
-            <option value="financeiro">Financeiro</option>
+            <% for (let i=0;i<categoria.length;i++) {%>
+              <option value="<%= categoria[i].nome %>"><%= categoria[i].nome %></option>
+            <% } %>
           </select>
-          <select id="tipo">
+
+          <select id="tipo" name="tipo">
             <option value="todas">Todas</option>
-            <option value="receita">Receita</option>
-            <option value="despesa">Despesa</option>
+            <option value="Receita">Receita</option>
+            <option value="Despesa">Despesa</option>
           </select>
           
           <a href="novaTransacao.html"><img src="image/maisPreto.png" alt="" />Nova Transação</a>
         </div>
-      </div>
+      </form>
 
       <div class="tabela">
         <h2>Lista de Transações</h2>
@@ -74,7 +76,7 @@
                   <td><%= transacoes[i].data.toLocaleDateString('pt-BR') %></td>
                   <td><%= transacoes[i].descricao %></td>
                   <td><%= transacoes[i].categoria %></td>
-                  <% if (transacoes[i].tipo === 'despesa') {%>
+                  <% if (transacoes[i].tipo === 'Despesa') {%>
                     <td><span class="badge despesa">Despesa</span></td>
                   <% } else {%>
                     <td><span class="badge receita">Receita</span></td>

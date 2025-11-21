@@ -22,7 +22,7 @@ export default async function home(req,res) {
 
         if (dataTransação.getMonth() === mesAtual){
             //CALCULAR RECEITAS E DESPESAS DO MES ATUAL
-            if (transacoes[i].tipo === 'despesa'){
+            if (transacoes[i].tipo === 'Despesa'){
                 despesaMesAtual += transacoes[i].valor;
                 
 
@@ -48,7 +48,7 @@ export default async function home(req,res) {
         }
 
         //CALCULAR SALDO
-        if (transacoes[i].tipo === 'despesa'){
+        if (transacoes[i].tipo === 'Despesa'){
             despesaTotal += transacoes[i].valor;
         }else if (transacoes[i].tipo === 'Receita'){
             receitaTotal += transacoes[i].valor;
@@ -78,7 +78,7 @@ export default async function home(req,res) {
         for (let i = 0; i<transacoes.length;i++){
             let dataTransação = new Date(transacoes[i].data);
             if (mes === dataTransação.getMonth()){
-                if (transacoes[i].tipo === 'despesa'){
+                if (transacoes[i].tipo === 'Despesa'){
                     despesa += transacoes[i].valor
                 }
                 if (transacoes[i].tipo === 'Receita'){

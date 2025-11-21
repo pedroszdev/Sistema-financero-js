@@ -111,7 +111,6 @@ main{
     background-repeat: no-repeat;
     background-position: 15px center;
     background-color: #f3f3f3;
-    color: #ccc;
 }
 button{
     padding: 0.5rem;
@@ -180,6 +179,7 @@ option{
 .pesquisa img{
     margin-right: 0.5rem;
 }
+
 .tabela{
     margin: 2rem 0;
     padding: 1rem;
