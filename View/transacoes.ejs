@@ -52,7 +52,7 @@
             <option value="Despesa">Despesa</option>
           </select>
           
-          <a href="novaTransacao.html"><img src="image/maisPreto.png" alt="" />Nova Transação</a>
+          <a href="/transacao"><img src="image/maisPreto.png" alt="" />Nova Transação</a>
         </div>
       </form>
 
@@ -83,7 +83,7 @@
                   <% } %>
                   <td>R$ <%= transacoes[i].valor.toFixed(2) %></td>
                   <td>
-                    <a href="" class="botao-editar"
+                    <a href="/transacao/<%= transacoes[i].id %>" class="botao-editar"
                       ><img src="image/editar.png" alt="" />Editar</a
                     >
                   </td>

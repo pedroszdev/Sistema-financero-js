@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: aliceblue;
+    font-family: "Inter", sans-serif;
+}
+.inter {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+.login{
+    margin: 0 auto;
+    text-align: center;
+}
+.titulo{
+    margin: 4rem;
+    font-family: "Inter", sans-serif;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+
+}
+.titulo img{
+    background: linear-gradient(to right, #2d17ba, #1e0f95);
+    padding: 1rem;
+    border-radius: 1rem;
+}
+.titulo p, .form-titulo p{
+    padding-top: 0.5rem;
+    color: #666;
+}
+.titulo h1,.form-titulo h2{
+    padding-top: 0.5rem;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #333333;
+}
+
+.form{
+    width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 2px 2px 3px #cccccc;
+
+}
+.form-titulo{
+    text-align: left;
+    padding: 2rem;
+}
+.form{
+    text-align: left;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    padding-top: 1rem;
+}
+
+#valor{
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 0.5rem 0.5rem 0.5rem 45px;
+    background-image: url(/image/dinheiro.png);
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    background-color: #f3f3f3;
+    color: #383838;
+    margin-top: 0.4rem;
+    margin-bottom: 1.5rem;
+}
+
+#categoria{
+    margin-top: 0.4rem;
+    margin-bottom: 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 0.5rem ;
+    background-color: #f3f3f3;
+    color: #383838;
+}
+#receita-despesa{
+    margin-top: 0.4rem;
+    margin-bottom: 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 0.5rem ;
+    background-color: #f3f3f3;
+    color: #383838;
+}
+#date{
+    margin-top: 0.4rem;
+    margin-bottom: 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 0.5rem 0.5rem 0.5rem 45px;
+    background-image: url(/image/calendario.png);
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    background-color: #f3f3f3;
+    color: #383838;
+}
+#descricao{
+    margin-top: 0.4rem;
+    margin-bottom: 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 0.5rem 0.5rem 0.5rem 45px;
+    background-image: url(/image/etiqueta-de-preco.png);
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    background-color: #f3f3f3;
+    color: #383838;
+}
+label{
+    font-weight: 600;
+    
+}
+.botoes{
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem
+}
+.enviar{
+    padding: 0.5rem;
+    border: none;
+    width: 100%;
+    background-color: black;
+    color: #f3f3f3;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 0.3rem;
+    cursor: pointer;
+}
+
+.cancelar{
+    padding: 0.5rem;
+    border: none;
+    width: 100%;
+    background-color: transparent;
+    color: black;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    border: 1px solid rgba(97, 97, 97, 0.5);
+    text-align: center;
+    text-decoration: none;
+}
