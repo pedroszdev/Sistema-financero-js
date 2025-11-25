@@ -51,6 +51,7 @@ export async function EditarTransacao(req,res) {
         }
         const transacao = await Transacao.update(req.body,{where:{id}});
         console.log(req.body)
+        req.flash('success', 'Transação editada com sucesso')
         return res.redirect('/')
 
     }catch(e){}

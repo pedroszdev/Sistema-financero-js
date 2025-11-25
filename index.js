@@ -2,9 +2,22 @@ import express from 'express'
 const server = express();
 import sincronizarTabelas from './Model/index.js';
 import route from './router.js';
-
+import session from 'express-session';
+import flash from 'flash';
 
 // sincronizarTabelas();
+
+server.use(session({
+  secret: "segredo",
+  resave: false,
+  saveUninitialized: true
+}));
+server.use(flash());
+server.use((req, res, next) => {
+  res.locals.error = req.flash("error");
+  res.locals.success = req.flash("success");
+  next();
+});
 
 server.set('views', './View');
 server.set('view engine', 'ejs');
