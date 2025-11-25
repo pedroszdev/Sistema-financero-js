@@ -73,7 +73,7 @@
             <tbody>
               <% for (let i=0;i<transacoes.length;i++) {%>
                 <tr>
-                  <td><%= transacoes[i].data.toLocaleDateString('pt-BR') %></td>
+                  <td><%= transacoes[i].data.toLocaleDateString('pt-BR', { timeZone: 'UTC' }) %></td>
                   <td><%= transacoes[i].descricao %></td>
                   <td><%= transacoes[i].categoria %></td>
                   <% if (transacoes[i].tipo === 'Despesa') {%>
