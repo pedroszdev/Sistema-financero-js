@@ -159,3 +159,52 @@ label{
     text-decoration: none;
     text-align: center;
 }
+.toast {
+    visibility: hidden; /* Invisível por padrão */
+    min-width: 250px;
+    background-color: #4CAF50; /* Verde Sucesso */
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 16px;
+    position: fixed; /* Fixado na tela */
+    z-index: 1;
+    right: 30px; /* Distância da direita */
+    top: 30px;   /* Distância do topo */
+    font-size: 17px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Esta classe é adicionada pelo JS para mostrar o pop-up */
+.toast.show {
+    visibility: visible;
+    /* Animação: Entra (0.5s) e Sai (0.5s) após esperar 2.5s */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animação de Entrada */
+@-webkit-keyframes fadein {
+    from {top: 0; opacity: 0;} 
+    to {top: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {top: 0; opacity: 0;}
+    to {top: 30px; opacity: 1;}
+}
+
+/* Animação de Saída */
+@-webkit-keyframes fadeout {
+    from {top: 30px; opacity: 1;} 
+    to {top: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {top: 30px; opacity: 1;}
+    to {top: 0; opacity: 0;}
+}
+
+.error{
+    background-color: #d12b2b;
+}

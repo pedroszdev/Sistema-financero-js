@@ -8,6 +8,7 @@
 </head>
 <body>
     <div class="login">
+        <%- include('includes/messages') %>
         <div class="titulo">
             <img src="image/financaBranco.png" alt="">
             <h1>FinanceApp</h1>
@@ -18,9 +19,6 @@
                 <h2>Nova Transação</h2>
                 <p>Adicione uma nova receita ou despesa à sua conta</p>
             </div>
-            <% if (typeof erros !== 'undefined' && erros) { %>
-                <p><%= erros %></p>
-            <% } %>
             <form method="POST" action="/transacao">
                 
                 <label for="valor">Valor </label>

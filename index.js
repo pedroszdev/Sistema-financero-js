@@ -3,14 +3,18 @@ const server = express();
 import sincronizarTabelas from './Model/index.js';
 import route from './router.js';
 import session from 'express-session';
-import flash from 'flash';
+import flash from 'connect-flash';
 
 // sincronizarTabelas();
 
 server.use(session({
   secret: "segredo",
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie:{
+        maxAge:1000*60*60*24*7,
+        httpOnly:true,
+    }
 }));
 server.use(flash());
 server.use((req, res, next) => {

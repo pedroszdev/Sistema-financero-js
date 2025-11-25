@@ -13,11 +13,13 @@
             <h1>FinanceApp</h1>
             <p>Gerencie suas finanças com inteligência</p>
         </div>
+        <%- include('includes/messages') %>
         <div class="form">
             <div class="form-titulo">
                 <h2>Editar Transação</h2>
                 <p>Edite uma nova receita ou despesa da sua conta</p>
             </div>
+            
             <form action="/transacao/edit/<%=transacao[0].id %>" method="POST">
                 
                 <label for="valor">Valor </label>
