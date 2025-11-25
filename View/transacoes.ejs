@@ -35,6 +35,7 @@
           name="search"
           id="search"
           placeholder="Buscar Transações..."
+          value="<%= search %>"
         />
         <button>Pesquisar</button>
         <div>
@@ -42,14 +43,26 @@
           <select id="categoria" name="categoria">
             <option value="todas">Todas</option>
             <% for (let i=0;i<categoria.length;i++) {%>
-              <option value="<%= categoria[i].nome %>"><%= categoria[i].nome %></option>
+              <% if(categoria[i].nome === categoriaPesquisada) {%>
+                <option value="<%= categoria[i].nome %>" selected><%= categoria[i].nome %></option>
+              <% } else {%>
+                <option value="<%= categoria[i].nome %>"><%= categoria[i].nome %></option>
+              <% } %>
             <% } %>
           </select>
 
           <select id="tipo" name="tipo">
             <option value="todas">Todas</option>
-            <option value="Receita">Receita</option>
-            <option value="Despesa">Despesa</option>
+            <% if (tipoPesquisada === 'Receita') {%>
+              <option value="Receita" selected>Receita</option>
+              <option value="Despesa">Despesa</option>
+            <% }else if (tipoPesquisada === 'Despesa') {%>
+              <option value="Receita">Receita</option>
+              <option value="Despesa" selected>Despesa</option>
+            <% } else{%>
+              <option value="Receita">Receita</option>
+              <option value="Despesa">Despesa</option>
+            <% } %>
           </select>
           
           <a href="/transacao"><img src="image/maisPreto.png" alt="" />Nova Transação</a>
@@ -91,6 +104,27 @@
               <% } %>
             </tbody>
           </table>
+          <div class="paginacao" style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; align-items: center;">
+    
+              <% if (currentPage > 1) { %>
+                  <a href="/transacoes?page=<%= currentPage - 1 %>&search=<%= search %>&categoria=<%= categoriaPesquisada %>&tipo=<%= tipoPesquisada %>" 
+                    class="botao-paginacao" 
+                    style="padding: 0.5rem 1rem; background-color: #3B82F6; color: white; border-radius: 5px; text-decoration: none;">
+                    &laquo; Anterior
+                  </a>
+              <% } %>
+
+              <span style="font-weight: bold;">Página <%= currentPage %> de <%= totalPages %></span>
+
+              <% if (currentPage < totalPages) { %>
+                  <a href="/transacoes?page=<%= currentPage + 1 %>&search=<%= search %>&categoria=<%= categoriaPesquisada %>&tipo=<%= tipoPesquisada %>" 
+                    class="botao-paginacao" 
+                    style="padding: 0.5rem 1rem; background-color: #3B82F6; color: white; border-radius: 5px; text-decoration: none;">
+                    Próxima &raquo;
+                  </a>
+              <% } %>
+              
+          </div>
         <% } else {%>
           <p style="text-align: center; font-size: 2rem;">Nenhuma transação encontrada.</p>
         <% } %>

@@ -2,10 +2,13 @@ import Transacao from "../Model/TransacaoModel.js";
 import Categoria from "../Model/CategoriaModel.js";
 import { Op } from "sequelize";
 
-export default async function home(req,res) {
+export async function homeTransacoes(req,res) {
     const { search} = req.query;
-    const tipoPesquisada = req.query.tipo;
-    const categoriaPesquisada = req.query.categoria;
+    const tipoPesquisada = req.query.tipo || '';
+    const categoriaPesquisada = req.query.categoria || '';
+    const page = parseInt(req.query.page) || 1;
+    const limit = 20; // Definimos 10 transações por página
+    const offset = (page - 1) * limit;
 
     let condicao = { userId: 1 };
 
@@ -20,12 +23,23 @@ export default async function home(req,res) {
     if (tipoPesquisada && tipoPesquisada !== 'todas') {
         condicao.tipo = tipoPesquisada;
     }
-    const transacoes = await Transacao.findAll({
+    const { count, rows: transacoes } = await Transacao.findAndCountAll({
         where: condicao, 
         order: [['data', 'DESC']],
         raw: true,
         nest: true,
+        limit: limit,   
+        offset: offset,
     });
     const categoria = await Categoria.findAll({raw: true,nest: true,});
-    return res.render('transacoes', { transacoes, search, categoria });
+    const totalPages = Math.ceil(count / limit);
+    return res.render('transacoes', { 
+        transacoes, 
+        search, 
+        categoria,
+        currentPage: page,
+        totalPages,
+        tipoPesquisada,
+        categoriaPesquisada
+    });
 }
