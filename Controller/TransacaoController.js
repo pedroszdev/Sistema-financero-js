@@ -11,6 +11,7 @@ export async function CadastrarProduto(req,res) {
         if (!parseFloat(req.body.valor) && req.body.valor.length >= 0){
             console.log('valor invalido')
             const erros = 'Valor deve ser um número e maior que 0'
+            req.flash('error', erros)
             req.session.save(()=>{
                 res.redirect('/transacao')
             })
@@ -77,7 +78,7 @@ export async function EditarTransacao(req,res) {
         console.log(req.body)
         req.flash('success', 'Transação editada com sucesso')
         req.session.save(()=>{
-            res.redirect('/')
+            res.redirect('/transacoes')
         })
         return
         
@@ -98,7 +99,7 @@ export async function ApagarTransacao(req,res) {
         const transacao =  await Transacao.destroy({where:{id}})
         req.flash('success', 'Transação apagada com sucesso')
         req.session.save(()=>{
-            res.redirect('/')
+            res.redirect('/transacoes')
         })
         return
     }catch(e){
