@@ -3,7 +3,7 @@ const route = express.Router();
 import HomeController from './Controller/HomeController.js';
 import {homeTransacoes} from './Controller/TransacoesController.js';
 import {HomeProduto,CadastrarProduto, EditIndex, EditarTransacao,ApagarTransacao} from './Controller/TransacaoController.js'
-import { IndexCadastro, CadastroUser } from './Controller/UserController.js';
+import { IndexCadastro, CadastroUser, EditarUserIndex, EditarUser, ApagarUser } from './Controller/UserController.js';
 import { LoginUser, LoginIndex } from './Controller/LoginController.js';
 import LoginRequired from './Middleware/LoginRequired.js';
 //Home
@@ -20,9 +20,11 @@ route.post('/transacao/edit/:id', LoginRequired, EditarTransacao);
 route.get('/transacao/delete/:id', LoginRequired, ApagarTransacao);
 
 //CRUD User
-route.get('/cadastro', IndexCadastro)
-route.post('/cadastro', CadastroUser)
-
+route.get('/user', IndexCadastro)
+route.post('/user', CadastroUser)
+route.get('/user/:id',LoginRequired, EditarUserIndex)
+route.post('/user/:id', LoginRequired, EditarUser)
+route.get('/user/delete/:id',LoginRequired, ApagarUser)
 //LoginUser
 route.get('/login', LoginIndex)
 route.post('/login', LoginUser)

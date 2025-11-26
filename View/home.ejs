@@ -21,7 +21,7 @@
         >
       </div>
       <div class="user">
-          <a href="user.html"><img src="image/user.png" alt="" /><%= context.user.nome %></a>
+          <a href="/user/<%= context.user.id %>"><img src="image/user.png" alt="" /><%= context.user.nome %></a>
       </div>
     </nav>
       <%- include('includes/messages') %>
