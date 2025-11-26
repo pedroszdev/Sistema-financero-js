@@ -25,6 +25,7 @@ export async function CadastrarProduto(req,res) {
         return res.redirect('/')
     }catch(e){
         req.flash('error', `Error: ${e}`)
+        return res.redirect('/')
     }
 }
 
@@ -56,9 +57,11 @@ export async function EditarTransacao(req,res) {
         console.log(req.body)
         req.flash('success', 'Transação editada com sucesso')
         return res.redirect('/')
+        
 
     }catch(e){
         req.flash('error', `Error: ${e}`)
+        return res.redirect('/')
 
     }
 }
@@ -71,5 +74,6 @@ export async function ApagarTransacao(req,res) {
         return res.redirect('/')
     }catch(e){
         req.flash('error', `Error: ${e}`)
+        return res.redirect('/')
     }
 }
