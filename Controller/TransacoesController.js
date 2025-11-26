@@ -10,7 +10,7 @@ export async function homeTransacoes(req,res) {
     const limit = 20; // Definimos 10 transações por página
     const offset = (page - 1) * limit;
 
-    let condicao = { userId: 1 };
+    let condicao = { userId: req.session.usuario.id };
 
     if (search) {
         condicao.descricao = { [Op.iLike]: `%${search}%` };

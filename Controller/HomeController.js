@@ -1,9 +1,11 @@
 import Transacao from "../Model/TransacaoModel.js";
 export default async function home(req,res) {
+    const user = req.session.usuario
+    console.log(user)
 
     const transacoes = await Transacao.findAll({
         where: {
-            userId: 1 
+            userId: user.id
         },
         raw: true,  
         nest: true,
@@ -90,13 +92,13 @@ export default async function home(req,res) {
         receita = 0;
         despesa = 0;
     }
-
     const context = {
         receitaMesAtual: receitaMesAtual.toFixed(2),
         despesaMesAtual: despesaMesAtual.toFixed(2),
         saldo: saldo.toFixed(2),
         dados6meses,
-        dadosCategoria
+        dadosCategoria,
+        user
     }
 
     return res.render('home', {context})

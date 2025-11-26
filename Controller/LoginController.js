@@ -12,14 +12,23 @@ export async function LoginUser(req,res) {
     })
     if (!user){
         req.flash('error', 'Email ou senha inválido')
-        return res.redirect('/login')
+        req.session.save(()=>{
+            res.redirect('/login')
+        })
+        return
     }
     if (!bcrypt.compareSync(senha,user.senha)){
         console.log('senha invalida')
         req.flash('error', 'Email ou senha inválido')
-        return res.redirect('/login')
+        req.session.save(()=>{
+            res.redirect('/login')
+        })
+        return
     }
     req.session.usuario = {id:user.id, nome:user.nome}
     req.flash('success', 'Login realizado com sucesso')
-    return res.redirect('/')
+    req.session.save(()=>{
+        res.redirect('/')
+    })
+    return
 }

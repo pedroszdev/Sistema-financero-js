@@ -9,23 +9,31 @@ export async function CadastroUser(req,res){
         if ( nome.length <= 2){
             const erros = 'Seu nome precisa ter pelo menos 3 caractere'
             req.flash('error', erros)
-            return res.redirect('/cadastro')
+            req.session.save(()=>{
+                res.redirect('/cadastro')
+            })
+            return
         }
         if (senha.length <=6 ){
             const erros = 'Sua senha precisa ter 7 ou mais caractere'
             req.flash('error', erros)
-            return res.redirect('/cadastro')
+            req.session.save(()=>{
+                res.redirect('/cadastro')
+            })
+            return
         }
         const user = await UserModel.create({nome,email,senha})
         req.flash('success', 'Usuário criado com sucesso')
-        return res.redirect('/login')
+        req.session.save(()=>{
+            res.redirect('/login')
+        })
+        return
     }catch(e){
         req.flash('error', `Error: ${e}`)
-        return res.redirect('/')
+        req.session.save(()=>{
+            res.redirect('/')
+        })
+        return
     }
 
-}
-
-export async function LoginUser(req,res) {
-    
 }

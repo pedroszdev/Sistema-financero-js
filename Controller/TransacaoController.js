@@ -11,27 +11,41 @@ export async function CadastrarProduto(req,res) {
         if (!parseFloat(req.body.valor) && req.body.valor.length >= 0){
             console.log('valor invalido')
             const erros = 'Valor deve ser um número e maior que 0'
-            req.flash('error', erros)
-            return res.redirect('/transacao')
+            req.session.save(()=>{
+                res.redirect('/transacao')
+            })
+            return
         }
         if (req.body.descricao.length <=2){
             const erros = 'Descrição deve ter 2 ou mais caractere'
             req.flash('error', erros)
-            return res.redirect('/transacao')
+            req.session.save(()=>{
+                res.redirect('/transacao')
+            })
+            return
         }
-        req.body.userId = '1'
+        req.body.userId = req.session.usuario.id
         const transacao = await Transacao.create(req.body);
         req.flash('success', 'Transação criada com sucesso');
-        return res.redirect('/')
+        req.session.save(()=>{
+            res.redirect('/')
+        })
+        return
     }catch(e){
         req.flash('error', `Error: ${e}`)
-        return res.redirect('/')
-    }
+        req.session.save(()=>{
+            res.redirect('/')
+        })
+        return
+}
 }
 
 export async function EditIndex(req,res){
     const id = parseInt(req.params.id);
     const transacao = await Transacao.findAll({where:{id},raw: true,nest: true,});
+    if (transacao[0].userId != req.session.usuario.id){
+        return res.send('ERROR 404')
+    }
     if (transacao.length <= 0){
         return res.send('ERROR 404')
     }
@@ -45,23 +59,35 @@ export async function EditarTransacao(req,res) {
             console.log('valor invalido')
             const erros = 'Valor deve ser um número e maior que 0'
             req.flash('error', erros)
-            return res.redirect('/transacao' + id)
+            req.session.save(()=>{
+                res.redirect('/transacao' + id)
+            })
+            return
         }
         if (req.body.descricao.length <=2){
             console.log('descricao errada')
             const erros = 'Descrição deve ter 2 ou mais caractere'
             req.flash('error', erros)
-            return res.redirect('/transacao' + id)
+            req.session.save(()=>{
+                res.redirect('/transacao' + id)
+            })
+            return
         }
         const transacao = await Transacao.update(req.body,{where:{id}});
         console.log(req.body)
         req.flash('success', 'Transação editada com sucesso')
-        return res.redirect('/')
+        req.session.save(()=>{
+            res.redirect('/')
+        })
+        return
         
 
     }catch(e){
         req.flash('error', `Error: ${e}`)
-        return res.redirect('/')
+        req.session.save(()=>{
+            res.redirect('/')
+        })
+        return
 
     }
 }
@@ -71,9 +97,15 @@ export async function ApagarTransacao(req,res) {
     try{
         const transacao =  await Transacao.destroy({where:{id}})
         req.flash('success', 'Transação apagada com sucesso')
-        return res.redirect('/')
+        req.session.save(()=>{
+            res.redirect('/')
+        })
+        return
     }catch(e){
         req.flash('error', `Error: ${e}`)
-        return res.redirect('/')
+        req.session.save(()=>{
+            res.redirect('/')
+        })
+        return
     }
 }
