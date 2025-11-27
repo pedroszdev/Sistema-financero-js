@@ -1,7 +1,6 @@
 import Transacao from "../Model/TransacaoModel.js";
 export default async function home(req,res) {
     const user = req.session.usuario
-    console.log(user)
 
     const transacoes = await Transacao.findAll({
         where: {
@@ -101,5 +100,5 @@ export default async function home(req,res) {
         user
     }
 
-    return res.render('home', {context})
+    return res.render('home', {context,user})
 }

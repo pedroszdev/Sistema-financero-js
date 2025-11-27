@@ -1,114 +1,99 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-}
-body{
+
+* { margin: 0; padding: 0; box-sizing: border-box; } /* box-sizing ajuda no cálculo de largura */
+
+body {
     background-color: aliceblue;
     font-family: "Inter", sans-serif;
 }
-.inter {
-  font-family: "Inter", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 300;
-  font-style: normal;
-}
-.cadastro{
+
+.login, .cadastro { /* Classe wrapper geral */
     margin: 0 auto;
     text-align: center;
+    width: 100%;
+    padding: 1rem; /* Espaço nas laterais em mobile */
 }
-.titulo{
-    margin: 4rem;
-    font-family: "Inter", sans-serif;
+
+.titulo {
+    margin: 2rem auto; /* Reduzi a margem vertical para mobile */
     font-size: 1.1rem;
     margin-bottom: 2rem;
-
+    max-width: 600px; /* Limite de largura */
 }
-.titulo img{
+
+.titulo img {
     background: linear-gradient(to right, #2d17ba, #1e0f95);
     padding: 1rem;
     border-radius: 1rem;
 }
-.titulo p, .form-titulo p{
+
+.titulo p, .form-titulo p {
     padding-top: 0.5rem;
     color: #666;
 }
-.titulo h1,.form-titulo h2{
+
+.titulo h1, .form-titulo h2 {
     padding-top: 0.5rem;
     font-size: 1.3rem;
     font-weight: 500;
     color: #333333;
 }
 
-.form{
-    width: 600px;
+/* --- RESPONSIVIDADE DO FORMULÁRIO --- */
+.form {
+    width: 100%;       /* Ocupa 100% do pai */
+    max-width: 600px;  /* Mas não passa de 600px */
     margin: 0 auto;
     background-color: #fff;
     border-radius: 1rem;
     box-shadow: 2px 2px 3px #cccccc;
-
-}
-.form-titulo{
     text-align: left;
+}
+
+.form-titulo {
     padding: 2rem;
 }
-.form{
-    text-align: left;
-}
-form{
+
+form {
     display: flex;
     flex-direction: column;
     padding: 2rem;
     padding-top: 1rem;
 }
-#nome{
-    margin-top: 0.4rem;
-    margin-bottom: 1.5rem;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    padding: 0.5rem 0.5rem 0.5rem 45px;
-    background-image: url(/image/do-utilizador.png);
-    background-repeat: no-repeat;
-    background-position: 15px center;
-    background-color: #f3f3f3;
-    color: #ccc;
-}
 
-#email{
+/* Inputs Responsivos */
+input, select {
+    width: 100%; /* Garante que preencham o container */
     border: none;
     border-radius: 5px;
-    font-size: 18px;
-    padding: 0.5rem 0.5rem 0.5rem 45px;
-    background-image: url(/image/e-mail.png);
+    font-size: 16px; /* 16px evita zoom automático no iOS */
+    padding: 0.8rem 0.5rem 0.8rem 45px;
     background-repeat: no-repeat;
     background-position: 15px center;
     background-color: #f3f3f3;
-    color: #ccc;
+    color: #333;
     margin-top: 0.4rem;
     margin-bottom: 1.5rem;
 }
 
-#senha{
-    margin-top: 0.4rem;
-    margin-bottom: 1.5rem;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    padding: 0.5rem 0.5rem 0.5rem 45px;
-    background-image: url(/image/cadeado.png);
-    background-repeat: no-repeat;
-    background-position: 15px center;
-    background-color: #f3f3f3;
-    color: #ccc;
-}
-label{
-    font-weight: 600;
-    
+/* Ícones específicos (Mantenha seus caminhos) */
+#email { background-image: url(/image/e-mail.png); }
+#senha { background-image: url(/image/cadeado.png); }
+#nome { background-image: url(/image/do-utilizador.png); }
+#valor { background-image: url(/image/dinheiro.png); }
+#date { background-image: url(/image/calendario.png); }
+#descricao { background-image: url(/image/etiqueta-de-preco.png); }
+
+/* Ajuste para selects que não têm ícone */
+#categoria, #receita-despesa {
+    padding: 0.8rem;
 }
 
-button{
-    padding: 0.5rem;
+label { font-weight: 600; }
+
+/* Botões */
+button, .enviar {
+    padding: 0.8rem;
     border: none;
     background-color: black;
     color: #f3f3f3;
@@ -116,54 +101,65 @@ button{
     font-weight: bold;
     border-radius: 0.3rem;
     cursor: pointer;
-
+    width: 100%;
 }
+
+.botoes {
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+}
+
+.cancelar, .apagar {
+    padding: 0.8rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    width: 100%;
+}
+.cancelar { border: 1px solid rgba(97, 97, 97, 0.5); color: black; }
+.apagar { background-color: rgb(179, 50, 50); color: white; }
+
+/* Links extras */
+.criar-conta, .esqueceu-senha {
+    text-align: center;
+    padding: 1rem;
+}
+
+/* MEDIA QUERY PARA CELULARES */
+@media (max-width: 480px) {
+    .form-titulo, form {
+        padding: 1.5rem; /* Menos padding em telas pequenas */
+    }
+    .titulo {
+        margin: 2rem 0;
+    }
+    .botoes {
+        flex-direction: column; /* Botões um embaixo do outro no celular */
+    }
+}
+
+/* Toast Notification (Mantido igual) */
 .toast {
-    visibility: hidden; /* Invisível por padrão */
+    visibility: hidden;
     min-width: 250px;
-    background-color: #4CAF50; /* Verde Sucesso */
+    background-color: #4CAF50;
     color: #fff;
     text-align: center;
     border-radius: 4px;
     padding: 16px;
-    position: fixed; /* Fixado na tela */
+    position: fixed;
     z-index: 1;
-    right: 30px; /* Distância da direita */
-    top: 30px;   /* Distância do topo */
+    right: 50%;         /* Centraliza no mobile */
+    transform: translateX(50%);
+    top: 30px;
     font-size: 17px;
     box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+    width: 90%; /* Responsivo */
 }
-
-/* Esta classe é adicionada pelo JS para mostrar o pop-up */
-.toast.show {
-    visibility: visible;
-    /* Animação: Entra (0.5s) e Sai (0.5s) após esperar 2.5s */
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
-}
-
-/* Animação de Entrada */
-@-webkit-keyframes fadein {
-    from {top: 0; opacity: 0;} 
-    to {top: 30px; opacity: 1;}
-}
-
-@keyframes fadein {
-    from {top: 0; opacity: 0;}
-    to {top: 30px; opacity: 1;}
-}
-
-/* Animação de Saída */
-@-webkit-keyframes fadeout {
-    from {top: 30px; opacity: 1;} 
-    to {top: 0; opacity: 0;}
-}
-
-@keyframes fadeout {
-    from {top: 30px; opacity: 1;}
-    to {top: 0; opacity: 0;}
-}
-
-.error{
-    background-color: #d12b2b;
-}
+.toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+.error { background-color: #d12b2b; }
+@keyframes fadein { from {top: 0; opacity: 0;} to {top: 30px; opacity: 1;} }
+@keyframes fadeout { from {top: 30px; opacity: 1;} to {top: 0; opacity: 0;} }

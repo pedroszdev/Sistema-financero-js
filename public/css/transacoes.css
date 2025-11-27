@@ -2,7 +2,9 @@
 *{
     margin: 0;
     padding: 0;
-}/* COR DO ICON MENU #7F7F7F */
+    box-sizing: border-box; /* Garante que padding não estoure a largura */
+}
+/* COR DO ICON MENU #7F7F7F */
 body{
     background-color: aliceblue;
     font-family: "Inter", sans-serif;
@@ -20,19 +22,20 @@ nav{
     align-items: center;
     box-shadow: 1px 1px 1rem rgba(196, 194, 194, 0.562);
     background-color: rgba(255, 255, 255, 0.397);
+    padding: 0 1rem; /* Adicionado padding lateral para não colar na borda */
 }
 .logo{
     display: flex;
     align-items: center;
     padding: 0.8rem;
-    padding-left: 2.5rem;
-
+    /* padding-left: 2.5rem; -> Removido para evitar quebra em telas pequenas */
 }
 .logo img{
     background: linear-gradient(to right, #2d17ba, #1e0f95);
     padding: 0.7rem;
     border-radius: 1rem;
     width: 35px;
+    box-sizing: content-box;
 }
 .logo h1{
     font-size: 1.5rem;
@@ -64,12 +67,13 @@ nav{
 .user{
     display: flex;
     gap: 1rem;
-    padding-right: 2.5rem;
+    /* padding-right: 2.5rem; -> Removido para evitar quebra */
 }
 .user img{
     background: linear-gradient(to right, #402db8, #2f228f);
     padding: 0.8rem;
     border-radius: 1.8rem;
+    box-sizing: content-box;
 }
 .user a{
     display: flex;
@@ -88,6 +92,8 @@ nav{
 main{
     padding: 2.5rem;
 }
+
+/* --- SEU LAYOUT ORIGINAL DE PESQUISA (GRID) --- */
 .pesquisa{
     margin: 2rem 0;
     padding: 1rem;
@@ -95,12 +101,13 @@ main{
     border-radius: 1rem;
     box-shadow: 2px 2px 4px #52525279;
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4,1fr); /* Mantido original */
     gap: 1rem;
 }
 .pesquisa input{
     grid-column-start: 1;
     grid-column-end: 4;
+    width: 100%; /* Garante preenchimento */
 }
 #search{
     border: none;
@@ -121,23 +128,23 @@ button{
     font-weight: bold;
     border-radius: 0.3rem;
     cursor: pointer;
-
 }
 .pesquisa div{
     grid-column-start: 1;
     grid-column-end: 3;
     display: flex;
     align-items: stretch;
-
+    flex-wrap: wrap; /* Para telas médias */
+    gap: 0.5rem;
 }
 select {
-  appearance: none;              /* Remove estilo padrão */
-  -webkit-appearance: none;      /* Safari */
-  -moz-appearance: none;         /* Firefox */
-  background-color: #f3f3f3;     /* Cor de fundo (cinza claro) */
-  border: 1px solid #e5e7eb;     /* Borda suave */
-  border-radius: 8px;            /* Cantos arredondados */
-  padding: 10px 56px 10px 12px;  /* Espaço interno */
+  appearance: none;              
+  -webkit-appearance: none;      
+  -moz-appearance: none;         
+  background-color: #f3f3f3;     
+  border: 1px solid #e5e7eb;     
+  border-radius: 8px;            
+  padding: 10px 56px 10px 12px;  
   font-size: 14px;
   font-weight: 500;
   color: #111827;
@@ -156,7 +163,7 @@ select:hover, #search:hover, option:hover {
 
 select:focus {
   outline: none;
-  border-color: #6366f1; /* Azul tipo Tailwind Indigo */
+  border-color: #6366f1; 
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
 }
 option{
@@ -186,6 +193,9 @@ option{
     background-color: #ffffff8f;
     border-radius: 1rem;
     box-shadow: 2px 2px 4px #52525279;
+    
+    /* ADICIONADO PARA RESPONSIVIDADE */
+    overflow-x: auto; /* Permite rolar a tabela no celular */
 }
 .tabela h2{
     font-weight: 400;
@@ -195,6 +205,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   text-align: center;
+  min-width: 600px; /* Garante tamanho mínimo para ativar a rolagem */
 }
 
 thead {
@@ -276,52 +287,75 @@ tr:hover {
 .botao-editar:hover{
     background-color: #5892f0;
 }
+.paginacao {
+    flex-wrap: wrap; /* Garante que a paginação não quebre em telas muito pequenas */
+}
+
+/* SEUS TOASTS */
 .toast {
-    visibility: hidden; /* Invisível por padrão */
+    visibility: hidden;
     min-width: 250px;
-    background-color: #4CAF50; /* Verde Sucesso */
+    background-color: #4CAF50;
     color: #fff;
     text-align: center;
     border-radius: 4px;
     padding: 16px;
-    position: fixed; /* Fixado na tela */
+    position: fixed;
     z-index: 1;
-    right: 30px; /* Distância da direita */
-    top: 30px;   /* Distância do topo */
+    right: 30px;
+    top: 30px;
     font-size: 17px;
     box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
 }
-
-/* Esta classe é adicionada pelo JS para mostrar o pop-up */
 .toast.show {
     visibility: visible;
-    /* Animação: Entra (0.5s) e Sai (0.5s) após esperar 2.5s */
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
+@-webkit-keyframes fadein { from {top: 0; opacity: 0;} to {top: 30px; opacity: 1;} }
+@keyframes fadein { from {top: 0; opacity: 0;} to {top: 30px; opacity: 1;} }
+@-webkit-keyframes fadeout { from {top: 30px; opacity: 1;} to {top: 0; opacity: 0;} }
+@keyframes fadeout { from {top: 30px; opacity: 1;} to {top: 0; opacity: 0;} }
+.error{ background-color: #d12b2b; }
 
-/* Animação de Entrada */
-@-webkit-keyframes fadein {
-    from {top: 0; opacity: 0;} 
-    to {top: 30px; opacity: 1;}
+
+/* --- RESPONSIVIDADE (MEDIA QUERIES) --- */
+@media (max-width: 900px) {
+    /* Ajusta a Nav Bar para empilhar se necessário */
+    nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .links, .user {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
-@keyframes fadein {
-    from {top: 0; opacity: 0;}
-    to {top: 30px; opacity: 1;}
-}
+@media (max-width: 768px) {
+    main {
+        padding: 1rem;
+    }
 
-/* Animação de Saída */
-@-webkit-keyframes fadeout {
-    from {top: 30px; opacity: 1;} 
-    to {top: 0; opacity: 0;}
-}
+    /* Transforma o Grid da pesquisa em Flex Coluna no mobile */
+    .pesquisa {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
 
-@keyframes fadeout {
-    from {top: 30px; opacity: 1;}
-    to {top: 0; opacity: 0;}
-}
-
-.error{
-    background-color: #d12b2b;
+    /* Remove as configurações de coluna do Grid para o mobile */
+    .pesquisa input, .pesquisa div, button {
+        grid-column: auto;
+        width: 100%; /* Ocupa largura total */
+    }
+    
+    .pesquisa div {
+        flex-direction: column;
+    }
+    
+    .pesquisa div select, .pesquisa div a {
+        width: 100%;
+        margin-right: 0;
+    }
 }

@@ -9,7 +9,8 @@ export async function homeTransacoes(req,res) {
     const page = parseInt(req.query.page) || 1;
     const limit = 20; // Definimos 10 transações por página
     const offset = (page - 1) * limit;
-
+    const user = req.session.usuario
+    
     let condicao = { userId: req.session.usuario.id };
 
     if (search) {
@@ -40,6 +41,7 @@ export async function homeTransacoes(req,res) {
         currentPage: page,
         totalPages,
         tipoPesquisada,
-        categoriaPesquisada
+        categoriaPesquisada,
+        user
     });
 }

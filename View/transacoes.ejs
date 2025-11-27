@@ -7,24 +7,8 @@
     <title>Transações | FinanceApp</title>
   </head>
   <body>
-    <nav>
-      <div class="logo">
-        <img src="image/financaBranco.png" alt="" />
-        <h1>FinanceApp</h1>
-      </div>
-      <div class="links">
-        <a href="/"
-          ><img src="image/painel-de-controle.png" alt="" />Dashboard</a
-        >
-        <a href="/transacoes"
-          ><img src="image/troca.png" alt="" />Transações</a
-        >
-      </div>
-      <div class="user">
-        <a href="user.html"><img src="image/user.png" alt="" />Pedro Manoel</a>
-      </div>
-    </nav>
-      <%- include('includes/messages') %>
+    <%- include('includes/nav') %>
+    <%- include('includes/messages') %>
     <main>
       <h2>Transações</h2>
       <p>Gerencie todas as suas movimentações financeiras.</p>
@@ -130,5 +114,6 @@
         <% } %>
       </div>
     </main>
+
   </body>
 </html>
