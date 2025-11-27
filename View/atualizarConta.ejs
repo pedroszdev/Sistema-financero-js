@@ -31,7 +31,7 @@
                 <div class="botoes">
                     <button>Atualizar conta</button>
                     <a class="delete" href="/user/delete/<%= user.id %>" onclick="return confirm('Tem certeza que deseja apagar esta conta?')">Apagar conta</a>
-                    <a class="logout" href="">Logout</a>
+                    <a class="logout" href="/logout" onclick="return confirm('Tem certeza que deseja fazer o logout?')">Logout</a>
                 </div>-
             </form>
         </div>

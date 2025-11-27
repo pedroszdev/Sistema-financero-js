@@ -4,7 +4,7 @@ import HomeController from './Controller/HomeController.js';
 import {homeTransacoes} from './Controller/TransacoesController.js';
 import {HomeProduto,CadastrarProduto, EditIndex, EditarTransacao,ApagarTransacao} from './Controller/TransacaoController.js'
 import { IndexCadastro, CadastroUser, EditarUserIndex, EditarUser, ApagarUser } from './Controller/UserController.js';
-import { LoginUser, LoginIndex } from './Controller/LoginController.js';
+import { LoginUser, LoginIndex, Logout } from './Controller/LoginController.js';
 import LoginRequired from './Middleware/LoginRequired.js';
 //Home
 route.get('/', LoginRequired, HomeController);
@@ -25,8 +25,10 @@ route.post('/user', CadastroUser)
 route.get('/user/:id',LoginRequired, EditarUserIndex)
 route.post('/user/:id', LoginRequired, EditarUser)
 route.get('/user/delete/:id',LoginRequired, ApagarUser)
+
 //LoginUser
 route.get('/login', LoginIndex)
 route.post('/login', LoginUser)
+route.get('/logout', LoginRequired, Logout)
 
 export default route;

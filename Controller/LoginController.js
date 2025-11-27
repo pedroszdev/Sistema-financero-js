@@ -33,3 +33,7 @@ export async function LoginUser(req,res) {
     return
 }
 
+export async function Logout(req,res) {
+    await req.session.destroy()
+    return res.redirect('/login')
+}
