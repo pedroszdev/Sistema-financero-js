@@ -26,7 +26,7 @@ const User = sequelize.define('User', {
         beforeSave: async (user) => {
             const saltRounds = 10;
             const hash = await bcrypt.hash(user.senha, saltRounds);
-            user.senha = hash; // Substitui a senha em texto puro pelo hash antes de salvar
+            user.senha = hash; 
         },
     }
 });

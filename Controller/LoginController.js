@@ -18,7 +18,6 @@ export async function LoginUser(req,res) {
         return
     }
     if (!bcrypt.compareSync(senha,user.senha)){
-        console.log('senha invalida')
         req.flash('error', 'Email ou senha inválido')
         req.session.save(()=>{
             res.redirect('/login')

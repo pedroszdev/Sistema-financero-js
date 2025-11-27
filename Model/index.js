@@ -5,23 +5,19 @@ import Categoria from './CategoriaModel.js';
 
 export default async function sincronizarTabelas() {
     try {
-        // Testa a conexão antes de sincronizar
         await sequelize.authenticate();
-        console.log('Conexão estabelecida. Sincronizando modelos...');
 
         User.hasMany(Transacao, { 
-            foreignKey: 'userId' // O usuário tem muitas transações
+            foreignKey: 'userId'
         });
 
         Transacao.belongsTo(User, {
-            foreignKey: 'userId' // A transação pertence a um usuário
+            foreignKey: 'userId' 
         });
 
-        // O comando sequelize.sync() cria as tabelas que não existem no banco
         await sequelize.sync({alter: true}); 
         
-        console.log('Tabela User criada/sincronizada com sucesso no Postgres!');
     } catch (error) {
-        console.error('❌ Erro durante a sincronização:', error);
+        console.error('Erro durante a sincronização:', error);
     }
 }

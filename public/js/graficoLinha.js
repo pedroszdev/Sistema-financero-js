@@ -1,5 +1,4 @@
 if (typeof Chart === "undefined") {
-  console.error("A biblioteca Chart.js não carregou. Verifique sua conexão.");
   document.querySelector(".chart-container").innerHTML =
     '<p style="color:red; text-align:center;">Erro ao carregar biblioteca Chart.js</p>';
 } else {

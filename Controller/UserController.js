@@ -89,7 +89,6 @@ export async function EditarUser(req,res) {
             raw: true,  
             nest: true
         })
-    console.log(VerificarSeEmailExiste)
     if (VerificarSeEmailExiste && VerificarSeEmailExiste.email != user.email){
         const erros = 'Já existe uma conta com esse email'
         req.flash('error', erros)

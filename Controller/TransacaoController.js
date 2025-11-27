@@ -9,7 +9,6 @@ export async function HomeProduto(req,res) {
 export async function CadastrarProduto(req,res) {
     try{
         if (!parseFloat(req.body.valor) && req.body.valor.length >= 0){
-            console.log('valor invalido')
             const erros = 'Valor deve ser um número e maior que 0'
             req.flash('error', erros)
             req.session.save(()=>{
@@ -44,7 +43,7 @@ export async function CadastrarProduto(req,res) {
 export async function EditIndex(req,res){
     const id = parseInt(req.params.id);
     const transacao = await Transacao.findAll({where:{id},raw: true,nest: true,});
-    if (transacao[0].userId != req.session.usuario.id){
+    if (transacao.length === 0 || transacao[0].userId != req.session.usuario.id ){
         return res.send('ERROR 404')
     }
     if (transacao.length <= 0){
@@ -57,25 +56,22 @@ export async function EditarTransacao(req,res) {
     const id = parseInt(req.params.id);
     try{
         if (!parseFloat(req.body.valor) && req.body.valor.length >= 0){
-            console.log('valor invalido')
             const erros = 'Valor deve ser um número e maior que 0'
             req.flash('error', erros)
             req.session.save(()=>{
-                res.redirect('/transacao' + id)
+                res.redirect('/transacao/' + id)
             })
             return
         }
         if (req.body.descricao.length <=2){
-            console.log('descricao errada')
             const erros = 'Descrição deve ter 2 ou mais caractere'
             req.flash('error', erros)
             req.session.save(()=>{
-                res.redirect('/transacao' + id)
+                res.redirect('/transacao/' + id)
             })
             return
         }
         const transacao = await Transacao.update(req.body,{where:{id}});
-        console.log(req.body)
         req.flash('success', 'Transação editada com sucesso')
         req.session.save(()=>{
             res.redirect('/transacoes')
